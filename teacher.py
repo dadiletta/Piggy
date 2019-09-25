@@ -17,6 +17,9 @@ class PiggyParent(gopigo3.GoPiGo3):
             sys.stdout.write("Sorry, requires Python 3.x\n")
             self.quit()
 
+    def calibrate(self):
+        pass
+
     def deg_fwd(self, deg):
         """Zeroes current encorder values then moves forward based on degrees given"""
         self.offset_motor_encoder(self.MOTOR_LEFT, self.get_motor_encoder(self.MOTOR_LEFT))
