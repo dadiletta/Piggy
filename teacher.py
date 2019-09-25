@@ -15,6 +15,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
     def __init__(self, addr=8, detect=True):
         gopigo3.GoPiGo3.__init__(self)
+        self.scan = []
 
     def calibrate(self):
         pass
@@ -26,6 +27,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
 
     def fwd(self):
+        """Blindly charges your robot forward at default power which needs to be configured in child class"""
         self.set_motor_power(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_power(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
 

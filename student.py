@@ -10,20 +10,21 @@ class Piggy(PiggyParent):
     '''
 
     def __init__(self, addr=8, detect=True):
+        PiggyParent.__init__(self) # run the parent constructor
+
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
-        PiggyParent.__init__(self) # run the parent constructor
-        
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
-        self.MIDPOINT = 90  # what angle is straight forward for your bot?
+        self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
 
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
 
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
+        self.set_servo(self.SERVO_1, self.MIDPOINT)
         
 
     def menu(self):
