@@ -38,7 +38,7 @@ class Piggy(PiggyParent):
         for key in sorted(menu.keys()):
             print(key + ":" + menu[key][0])
         # store the user's answer
-        ans = eval(input("Your selection: "))
+        ans = str.lower(input("Your selection: "))
         # activate the item selected
         menu.get(ans, [None, self.quit])[1]()
 
@@ -72,7 +72,7 @@ if __name__ == "__main__":  # only run this loop if this is the main file
     if sys.version_info < (3, 0):
         sys.stdout.write("Sorry, requires Python 3.x\n")
         p.quit()
-        
+
     try:
         while True:  # app loop
             p.menu()
