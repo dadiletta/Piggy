@@ -12,10 +12,6 @@
 import gopigo3, sys
 
 class PiggyParent(gopigo3.GoPiGo3):
-    def __init__(self, addr=8, detect=True):
-        if sys.version_info < (3, 0):
-            sys.stdout.write("Sorry, requires Python 3.x\n")
-            self.quit()
 
     def calibrate(self):
         pass
