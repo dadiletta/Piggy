@@ -13,6 +13,8 @@ class Piggy(PiggyParent):
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
         '''
+        PiggyParent.__init__(self) # run the parent constructor
+        
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 90  # what angle is straight forward for your bot?
@@ -27,7 +29,8 @@ class Piggy(PiggyParent):
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
         ## This is a DICTIONARY, it's a list with custom index values. Python is cool.
-        # Please feel free to change the menu and add options. 
+        # Please feel free to change the menu and add options.
+        print("\n *** MENU ***") 
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
                 "o": ("Obstacle count", self.obstacle_count),

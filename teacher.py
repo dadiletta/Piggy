@@ -13,6 +13,9 @@ import gopigo3, sys
 
 class PiggyParent(gopigo3.GoPiGo3):
 
+    def __init__(self, addr=8, detect=True):
+        gopigo3.GoPiGo3.__init__(self)
+
     def calibrate(self):
         pass
 
