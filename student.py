@@ -9,7 +9,7 @@ class Piggy(PiggyParent):
     '''
 
     def __init__(self, addr=8, detect=True):
-        super().__init__(addr=addr, detect=detect) # this triggers the parent constructor
+        super().__init__(self, addr=addr, detect=detect) # this triggers the parent constructor
 
         ''' 
         MAGIC NUMBERS <-- where we hard-code our settings
