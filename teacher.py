@@ -12,8 +12,8 @@
 import gopigo3, sys
 
 class PiggyParent(gopigo3.GoPiGo3):
-    def __init__(self, addr=8, detect=True):
-        super().__init__(addr=addr, detect=detect)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         if sys.version_info < (3, 0):
             sys.stdout.write("Sorry, requires Python 3.x\n")
             self.quit()
