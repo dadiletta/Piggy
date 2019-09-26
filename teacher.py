@@ -5,7 +5,6 @@
 # Copyright (c) 2017 Dexter Industries
 # Released under the MIT license (http://choosealicense.com/licenses/mit/).
 # For more information see https://github.com/DexterInd/GoPiGo3/blob/master/LICENSE.md
-
 import gopigo3, sys, time
 from di_sensors.easy_distance_sensor import EasyDistanceSensor
 
@@ -46,6 +45,7 @@ class PiggyParent(gopigo3.GoPiGo3):
             while True:
                 self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
                 self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
+                print("LEFT: {} // RIGHT: {} ".format(self.MOTOR_LEFT, self.MOTOR_RIGHT))
                 self.fwd()
                 time.sleep(1)
                 self.stop()
