@@ -65,5 +65,5 @@ class PiggyParent(gopigo3.GoPiGo3):
     def read_distance(self):
         """Returns the GoPiGo3's distance sensor in MM over IC2"""
         d = self.distance_sensor.read_mm()
-        print(f"Distance Sensor Reading: {d} mm ")
+        print("Distance Sensor Reading: {} mm ".format(d))
         return d
