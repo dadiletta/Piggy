@@ -7,6 +7,7 @@
 # For more information see https://github.com/DexterInd/GoPiGo3/blob/master/LICENSE.md
 import gopigo3, sys, time
 from di_sensors.easy_distance_sensor import EasyDistanceSensor
+from di_sensors import inertial_measurement_unit
 
 class PiggyParent(gopigo3.GoPiGo3):
 
@@ -18,6 +19,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         gopigo3.GoPiGo3.__init__(self)
         self.scan_data = {}
         self.distance_sensor = EasyDistanceSensor()
+        self.imu = inertial_measurement_unit.InertialMeasurementUnit(bus = "GPG3_AD1")
+
 
     def calibrate(self):
         """allows user to experiment on finding centered midpoint and even motor speeds"""
