@@ -56,6 +56,12 @@ class Piggy(PiggyParent):
     def dance(self):
         print("I don't know how to dance. \nPlease give my programmer a zero.")
 
+    def scan(self):
+        """Sweep the servo and populate the scan_data dictionary"""
+        for angle in range(self.MIDPOINT-350, self.MIDPOINT+350):
+            self.servo(angle)
+            self.scan_data[angle] = self.read_distance()
+
     def obstacle_count(self):
         print("I can't count how many obstacles are around me. Please give my programmer a zero.")
 

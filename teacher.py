@@ -6,7 +6,7 @@
 # Released under the MIT license (http://choosealicense.com/licenses/mit/).
 # For more information see https://github.com/DexterInd/GoPiGo3/blob/master/LICENSE.md
 
-import gopigo3, sys
+import gopigo3, sys, time
 from di_sensors.easy_distance_sensor import EasyDistanceSensor
 
 class PiggyParent(gopigo3.GoPiGo3):
@@ -17,7 +17,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
     def __init__(self, addr=8, detect=True):
         gopigo3.GoPiGo3.__init__(self)
-        self.scan = []
+        self.scan_data = {}
         self.distance_sensor = EasyDistanceSensor()
 
     def calibrate(self):
@@ -65,6 +65,12 @@ class PiggyParent(gopigo3.GoPiGo3):
             right = -self.RIGHT_DEFAULT
         self.set_motor_power(self.MOTOR_LEFT, left)
         self.set_motor_power(self.MOTOR_RIGHT, right)
+
+    def servo(self, angle):
+        """Moves the servo to the given angle"""
+        print("Servo moving to: {} ".format(angle))
+        self.set_servo(self.SERVO_1, angle)
+        time.sleep(.05)
 
     '''
     SENSORS
