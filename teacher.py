@@ -58,7 +58,11 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.set_motor_power(self.MOTOR_LEFT, counter)
         self.set_motor_power(self.MOTOR_RIGHT, primary)      
 
-    def back(self, left=-self.LEFT_DEFAULT, right=-self.RIGHT_DEFAULT):
+    def back(self, left=-50, right=-50):
+        if self.LEFT_DEFAULT and left == -50:
+            left = -self.LEFT_DEFAULT
+        if self.RIGHT_DEFAULT and right == -50:
+            right = -self.RIGHT_DEFAULT
         self.set_motor_power(self.MOTOR_LEFT, left)
         self.set_motor_power(self.MOTOR_RIGHT, right)
 
