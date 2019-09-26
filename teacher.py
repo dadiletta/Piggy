@@ -127,3 +127,9 @@ class PiggyParent(gopigo3.GoPiGo3):
         d = self.distance_sensor.read_mm()
         print("Distance Sensor Reading: {} mm ".format(d))
         return d
+
+    def get_heading(self):
+        """Returns the heading from the IMU sensor"""
+        reading = self.imu.read_euler()[0]
+        print("Gyroscope sensor is at: {} degrees ".format(reading))
+        return reading
