@@ -18,13 +18,14 @@ class Piggy(PiggyParent):
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
+        
 
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
 
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
-        self.set_servo(self.SERVO_1, self.MIDPOINT)
+        self.set_servo(p.SERVO_1, self.MIDPOINT)
         
 
     def menu(self):
