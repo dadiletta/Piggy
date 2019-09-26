@@ -22,7 +22,6 @@ class Piggy(PiggyParent):
 
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
-
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
         self.set_servo(p.SERVO_1, self.MIDPOINT)

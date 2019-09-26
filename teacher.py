@@ -44,7 +44,8 @@ class PiggyParent(gopigo3.GoPiGo3):
         response = str.lower(input("Do you want to check if I'm driving straight? (y/n)"))
         if 'y' in response:
             while True:
-                self.set_speed(self.LEFT_SPEED, self.RIGHT_SPEED)
+                self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
+                self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
                 self.fwd()
                 time.sleep(.5)
                 self.stop()
