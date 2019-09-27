@@ -4,9 +4,7 @@
 
 ## Installation
 
-`git clone https://github.com/dadiletta/piggy`
-
-Open the folder in Visual Studio Code and start working on `student.py`. Follow instructions on [our guide](https://gilmour.online/compsci/pnr/5-deploying-code)
+Follow instructions on [our guide](https://gilmour.online/compsci/pnr/5-deploying-code)
 
 ## Teacher commands
 
