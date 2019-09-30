@@ -55,14 +55,7 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        # HIGHER - ORDERED
-        for x in range(3):
-            self.sprinkler()
-            self.whoah()
-            self.chacha()
-            self.dab()
-
-
+        print("I don't know how to dance. \nPlease give my programmer a zero.")
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
@@ -78,18 +71,6 @@ class Piggy(PiggyParent):
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-
-    '''
-    DANCE METHODS
-    '''
-
-    def dab(self):
-        # full power to the left
-        self.left()
-        time.sleep(.1)
-        self.stop()
-        # servo right 
-        self.servo(1000)
 
 
 
