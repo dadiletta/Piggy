@@ -63,9 +63,13 @@ class Piggy(PiggyParent):
         self.right()
         time.sleep(1)
         self.stop()
-        self.servo(1000) # look right
-        time.sleep(.25)
-        self.servo(2000) # look left
+        self.turn_by_deg(-90)
+        self.left()
+        time.sleep(1)
+        self.stop()
+        self.turn_to_deg(90)
+        self.stop()
+        self.servo(1000)    
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
