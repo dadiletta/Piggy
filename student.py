@@ -55,9 +55,14 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        self.your_move()
+        self.floss()
 
-        
+    def floss(self):
+        while True:
+            self.servo(1000) # look right
+            time.sleep(1)
+            self.servo(2000) # look left
+            self.servo(1000) # look right     
 
     def your_move(self):
         self.right()
