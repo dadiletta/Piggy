@@ -80,32 +80,45 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.set_motor_position(self.MOTOR_LEFT + self.MOTOR_RIGHT, deg)
 
     def turn_by_deg(self, deg):
-        # higher - ordered (more complex but easier to read)
-        # get our current location
+        """Rotates robot relative to it's current heading. If told -20, it
+        will rotate left by 20 degrees."""
+
+        # get our current angle
         current = self.get_heading()
 
         # calculate delta
         goal = current + deg
+
         # LOOP AROUND THE 360 marker
-        if goal > 360:
-            goal -= 360
-        elif goal < 0:
-            goal += 360
+        goal %= 360
 
         # call turn to deg on the delta
         self.turn_to_deg(goal)
         
 
     def turn_to_deg(self, deg):
-        # lower - ordered (Batman)
+        """Turns to a degree relative to the gyroscope's readings. If told 20, it
+        will rotate until the gyroscope reads 20."""
 
-        # EXTRA CREDIT: TURN LEFT IF IT'S MORE EFFICIENT
+        # error check
+        goal = deg % 360
+        current = self.get_heading()
 
+        # TURN LEFT IF IT'S MORE EFFICIENT
+        turn = self.right  # connect it to the method without the () to activate
+        if (goal + current < 360 and goal + current > 180) or \
+            (goal + current > 360 and (360 - current) + goal < 180):
+            turn = self.left
+
+        
         # while loop - keep turning until my gyro says I'm there
-        while(abs(deg - self.get_heading()) > 5):
-            self.right(primary=60, counter=-60)
+        while abs(deg - self.get_heading()) > 4:
+            turn(primary=70, counter=-70)
+
+        # once out of the loop, hit the brakes
         self.stop()
-        print("I think I've turned correctly")
+        # report out to the user
+        print("\n{} is close enough to {}.\n".format(self.get_heading(), deg))
 
 
 
