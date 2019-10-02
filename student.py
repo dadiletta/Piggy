@@ -55,7 +55,16 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        print("I don't know how to dance. \nPlease give my programmer a zero.")
+        self.your_move()
+        
+        
+
+    def your_move(self):
+        self.right()
+        time.sleep(1)
+        self.stop()
+        self.servo(1000) # look right
+        self.servo(2000) # look left
 
     def scan(self):
         """Sweep the servo and populate the scan_data dictionary"""
