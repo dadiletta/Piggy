@@ -56,7 +56,7 @@ class Piggy(PiggyParent):
 
     def dance(self):
         self.your_move()
-        
+
         
 
     def your_move(self):
@@ -64,6 +64,7 @@ class Piggy(PiggyParent):
         time.sleep(1)
         self.stop()
         self.servo(1000) # look right
+        time.sleep(.25)
         self.servo(2000) # look left
 
     def scan(self):
