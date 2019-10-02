@@ -104,15 +104,15 @@ class PiggyParent(gopigo3.GoPiGo3):
         goal = deg % 360
         current = self.get_heading()
 
-        # TURN LEFT IF IT'S MORE EFFICIENT
+        # TODO: TURN LEFT IF IT'S MORE EFFICIENT
         turn = self.right  # connect it to the method without the () to activate
-        if (goal + current < 360 and goal + current > 180) or \
-            (goal + current > 360 and (360 - current) + goal < 180):
+        if (current - goal > 0 and current - goal < 180) or \
+            (current - goal < 0 and (360 - goal) + current < 180):
             turn = self.left
 
         
         # while loop - keep turning until my gyro says I'm there
-        while abs(deg - self.get_heading()) > 4:
+        while abs(deg - self.get_heading()) > 3:
             turn(primary=70, counter=-70)
 
         # once out of the loop, hit the brakes
