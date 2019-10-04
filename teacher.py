@@ -104,7 +104,6 @@ class PiggyParent(gopigo3.GoPiGo3):
         goal = deg % 360
         current = self.get_heading()
 
-        # TODO: TURN LEFT IF IT'S MORE EFFICIENT
         turn = self.right  # connect it to the method without the () to activate
         if (current - goal > 0 and current - goal < 180) or \
             (current - goal < 0 and (360 - goal) + current < 180):
