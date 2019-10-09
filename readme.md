@@ -28,6 +28,6 @@ Here are the building blocks from the `teacher.py` file you can use in your chal
 
 * `stop` - sets motor power to zero
 
-* `read_distance` - returns the distance from the distance sensor (plugged into I2C port) in milimeters
+* `read_distance` - returns the distance from the distance sensor (plugged into I2C port) in millimeters
 
 * `get_heading` - returns the gyroscope's value
