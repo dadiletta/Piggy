@@ -19,6 +19,7 @@ class Piggy(PiggyParent):
         self.LEFT_DEFAULT = 80
         self.RIGHT_DEFAULT = 80
         self.MIDPOINT = 1500  # what servo command (1000-2000) is straight forward for your bot?
+        self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
         self.load_defaults()
         
 
@@ -55,18 +56,17 @@ class Piggy(PiggyParent):
     '''
 
     def dance(self):
-        self.your_move()
-        '''
-        your stuff 
+        """A higher-ordered algorithm to make your robot dance"""
+        self.example_move()
+        # call other dance moves
 
-        '''
-
-    def your_move(self):
-        self.right()
-        time.sleep(1)
-        self.stop()
+    def example_move(self):
+        """this is an example dance move that should be replaced by student-created content"""
+        self.right() # start rotating right
+        time.sleep(1) # turn for a second
+        self.stop() # stop
         self.servo(1000) # look right
-        time.sleep(.25)
+        time.sleep(.25) # give your head time to move
         self.servo(2000) # look left
 
     def scan(self):
