@@ -30,18 +30,18 @@ class PiggyParent(gopigo3.GoPiGo3):
             while True:
                 response = str.lower(input("Turn right, left, or am I done? (r/l/d): "))
                 if response == "r":
-                    self.MIDPOINT += 25
-                    print("Midpoint: " + str(self.MIDPOINT))
-                    self.servo(self.MIDPOINT)
-                elif response == "l":
                     self.MIDPOINT -= 25
                     print("Midpoint: " + str(self.MIDPOINT))
                     self.servo(self.MIDPOINT)
+                elif response == "l":
+                    self.MIDPOINT += 25
+                    print("Midpoint: " + str(self.MIDPOINT))
+                    self.servo(self.MIDPOINT)
                 else:
-                    print("Midpoint now saved to: " + str(self.MIDPOINT))
+                    print("Midpoint temporarily saved to: " + str(self.MIDPOINT) + "\nYou'll need to update your magic number.")
                     break
         else:
-            print('Okay, remember %d as the correct self.MIDPOINT' % self.MIDPOINT)
+            print('Cool, %d is the correct self.MIDPOINT' % self.MIDPOINT)
         response = str.lower(input("Do you want to check if I'm driving straight? (y/n)"))
         if 'y' in response:
             while True:
@@ -101,7 +101,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         will rotate until the gyroscope reads 20."""
 
         # error check
-        goal = deg % 360
+        goal = abs(deg) % 360
         current = self.get_heading()
 
         turn = self.right  # connect it to the method without the () to activate
@@ -113,6 +113,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         # while loop - keep turning until my gyro says I'm there
         while abs(deg - self.get_heading()) > 3:
             turn(primary=70, counter=-70)
+            time.sleep(.05) # avoid spamming the gyro
 
         # once out of the loop, hit the brakes
         self.stop()
