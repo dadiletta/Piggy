@@ -20,6 +20,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.scan_data = {}
         self.distance_sensor = EasyDistanceSensor()
         self.imu = inertial_measurement_unit.InertialMeasurementUnit(bus = "GPG3_AD1")
+        self.stop()
 
     def calibrate(self):
         """allows user to experiment on finding centered midpoint and even motor speeds"""
