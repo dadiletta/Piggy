@@ -21,7 +21,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         self.scan_data = {}
         # mutex sensors on IC2
         self.distance_sensor = EasyDistanceSensor(port="RPI_1", use_mutex=True)
-        self.imu = inertial_measurement_unit.InertialMeasurementUnit(bus="RPI_1", use_mutex=True)
+        self.imu = inertial_measurement_unit.InertialMeasurementUnit(bus="RPI_1") # mutex crashes this
         # buffer for reading the gyro
         self.gyro_buffer = 0
         self.stop()
