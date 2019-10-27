@@ -222,9 +222,9 @@ class PiggyParent(gopigo3.GoPiGo3):
     def look_excited(self):
         for x in range(2):
             self.right(primary=80, counter=-80)
-            time.sleep(.25)
+            time.sleep(.75)
             self.left(primary=80, counter=-80)
-            time.sleep(.25)
+            time.sleep(.75)
             self.stop()
 
 
