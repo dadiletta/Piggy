@@ -38,6 +38,8 @@ class Piggy(PiggyParent):
         menu = {"n": ("Navigate", self.nav),
                 "d": ("Dance", self.dance),
                 "o": ("Obstacle count", self.obstacle_count),
+                "s": ("Shy", self.shy),
+                "f": ("Follow", self.follow),
                 "c": ("Calibrate", self.calibrate),
                 "q": ("Quit", self.quit)
                 }
@@ -57,8 +59,26 @@ class Piggy(PiggyParent):
 
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
-        self.example_move()
-        # call other dance moves
+        # check to see it's safe
+        if not self.safe_to_dance():
+            print("Not cool. Not going to dance")
+            return # return closes down the method
+        else:
+            print("It's safe to dance!")
+        for x in range(3):
+            self.example_move()
+            # call other dance moves
+
+    def safe_to_dance(self):
+        """ Does a 360 distance check and returns true if safe """
+        for x in range(4):
+            for ang in range(self.MIDPOINT-400, self.MIDPOINT+400, 100):
+                self.servo(ang)
+                time.sleep(.1)
+                if self.read_distance() < 250:
+                    return False
+            self.turn_by_deg(90)
+        return True
 
     def example_move(self):
         """this is an example dance move that should be replaced by student-created content"""

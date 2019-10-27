@@ -18,6 +18,7 @@ class PiggyParent(gopigo3.GoPiGo3):
 
     def __init__(self, addr=8, detect=True):
         gopigo3.GoPiGo3.__init__(self)
+        self.MIDPOINT = 1500
         self.scan_data = {}
         # mutex sensors on IC2
         self.distance_sensor = EasyDistanceSensor(port="RPI_1", use_mutex=True)
@@ -99,7 +100,6 @@ class PiggyParent(gopigo3.GoPiGo3):
 
         # call turn to deg on the delta
         self.turn_to_deg(goal)
-        
 
     def turn_to_deg(self, deg):
         """Turns to a degree relative to the gyroscope's readings. If told 20, it
@@ -185,3 +185,46 @@ class PiggyParent(gopigo3.GoPiGo3):
             print("----- PREVENTED GYRO SENSOR CRASH -----")
             print(e)
         return self.gyro_buffer
+
+    '''
+    SCRIPTS
+    '''
+
+    def shy(self):
+        """Responds to a close reading on the distance sensor by backing up"""
+        while True:
+            for ang in range(self.MIDPOINT-400, self.MIDPOINT+401, 100):
+                self.servo(ang)
+                time.sleep(.1)
+                if self.read_distance() < 250:
+                    self.back()
+                    time.sleep(.3)
+                    self.stop()
+                    for x in range(3):
+                        self.servo(self.MIDPOINT + 300)
+                        time.sleep(.15)
+                        self.servo(self.MIDPOINT - 300)
+                        time.sleep(.15)
+                    self.servo(self.MIDPOINT)
+                    self.fwd()
+                    time.sleep(.2)
+                    self.stop()
+
+    def follow(self):
+        """Responds to a close reading on the distance sensor by attempting to maintain heading"""
+        while True:
+            for ang in range(self.MIDPOINT-400, self.MIDPOINT+401, 100):
+                self.servo(ang)
+                time.sleep(.1)
+                if self.read_distance() < 250:
+                    self.look_excited()
+
+    def look_excited(self):
+        for x in range(2):
+            self.right(primary=80, counter=-80)
+            time.sleep(.25)
+            self.left(primary=80, counter=-80)
+            time.sleep(.25)
+            self.stop()
+
+
