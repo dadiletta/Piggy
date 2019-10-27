@@ -1,3 +1,4 @@
+#!/usr/bin python3
 from teacher import PiggyParent
 import sys
 import time
@@ -118,7 +119,7 @@ if __name__ == "__main__":  # only run this loop if this is the main file
 
     try:
         while True:  # app loop
-            p.menu()
+            p.shy()
 
     except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
         p.quit()  
