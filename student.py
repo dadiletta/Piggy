@@ -23,14 +23,12 @@ class Piggy(PiggyParent):
         self.set_motor_power(self.MOTOR_LEFT + self.MOTOR_RIGHT, 0)
         self.load_defaults()
         
-
     def load_defaults(self):
         """Implements the magic numbers defined in constructor"""
         self.set_motor_limits(self.MOTOR_LEFT, self.LEFT_DEFAULT)
         self.set_motor_limits(self.MOTOR_RIGHT, self.RIGHT_DEFAULT)
         self.set_servo(self.SERVO_1, self.MIDPOINT)
         
-
     def menu(self):
         """Displays menu dictionary, takes key-input and calls method"""
         ## This is a DICTIONARY, it's a list with custom index values. Python is cool.
@@ -97,14 +95,34 @@ class Piggy(PiggyParent):
             self.scan_data[angle] = self.read_distance()
 
     def obstacle_count(self):
-        print("I can't count how many obstacles are around me. Please give my programmer a zero.")
+        """Does a 360 scan and returns the number of obstacles it sees"""
+        found_something = False # trigger 
+        trigger_distance = 250
+        count = 0
+        starting_position = self.get_heading() # write down starting position
+        self.right(primary=60, counter=-60)
+        while self.get_heading() != starting_position:
+            if self.read_distance() < trigger_distance and not found_something:
+                found_something = True
+                count += 1
+                print("\n FOUND SOMETHING!!!!!!! \n")
+            elif self.read_distance() > trigger_distance and found_something:
+                found_something = False
+                print("I have a clear view. Resetting my counter")
+        self.stop()
+        print("I found this many things: %d" % count)
+        return count
+
 
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
-        print("Wait a second. \nI can't navigate the maze at all. Please give my programmer a zero.")
-
+        while self.read_distance() > 250:
+            self.fwd()
+            time.sleep(.01)
+        self.stop()
+        
 
 
 ###########
@@ -119,7 +137,7 @@ if __name__ == "__main__":  # only run this loop if this is the main file
 
     try:
         while True:  # app loop
-            p.follow()
+            p.menu()
 
     except KeyboardInterrupt: # except the program gets interrupted by Ctrl+C on the keyboard.
         p.quit()  
