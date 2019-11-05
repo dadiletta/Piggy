@@ -58,26 +58,15 @@ class Piggy(PiggyParent):
 
     def dance(self):
         """A higher-ordered algorithm to make your robot dance"""
-        # check to see it's safe
-        if not self.safe_to_dance():
-            print("Not cool. Not going to dance")
-            return # return closes down the method
-        else:
-            print("It's safe to dance!")
+        # TODO: check to see if it's safe before dancing
+        
         for x in range(3):
             self.example_move()
             # call other dance moves
 
     def safe_to_dance(self):
         """ Does a 360 distance check and returns true if safe """
-        for x in range(4):
-            for ang in range(self.MIDPOINT-400, self.MIDPOINT+400, 100):
-                self.servo(ang)
-                time.sleep(.1)
-                if self.read_distance() < 250:
-                    return False
-            self.turn_by_deg(90)
-        return True
+        pass
 
     def example_move(self):
         """this is an example dance move that should be replaced by student-created content"""
@@ -96,32 +85,21 @@ class Piggy(PiggyParent):
 
     def obstacle_count(self):
         """Does a 360 scan and returns the number of obstacles it sees"""
-        found_something = False # trigger 
-        trigger_distance = 250
-        count = 0
-        starting_position = self.get_heading() # write down starting position
-        self.right(primary=60, counter=-60)
-        while self.get_heading() != starting_position:
-            if self.read_distance() < trigger_distance and not found_something:
-                found_something = True
-                count += 1
-                print("\n FOUND SOMETHING!!!!!!! \n")
-            elif self.read_distance() > trigger_distance and found_something:
-                found_something = False
-                print("I have a clear view. Resetting my counter")
-        self.stop()
-        print("I found this many things: %d" % count)
-        return count
-
+        pass
 
     def nav(self):
         print("-----------! NAVIGATION ACTIVATED !------------\n")
         print("-------- [ Press CTRL + C to stop me ] --------\n")
         print("-----------! NAVIGATION ACTIVATED !------------\n")
-        while self.read_distance() > 250:
+        
+        # TODO: build self.quick_check() that does a fast, 3-part check instead of read_distance
+        while self.read_distance() > 250:  # TODO: fix this magic number
             self.fwd()
             time.sleep(.01)
         self.stop()
+        # TODO: scan so we can decide left or right
+        # TODO: average the right side of the scan dict
+        # TODO: average the left side of the scan dict
         
 
 

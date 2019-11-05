@@ -185,7 +185,7 @@ class PiggyParent(gopigo3.GoPiGo3):
         return self.gyro_buffer
 
     '''
-    SCRIPTS
+    SHOWOFF SCRIPTS
     '''
 
     def shy(self):
